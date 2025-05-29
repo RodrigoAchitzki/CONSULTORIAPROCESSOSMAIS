@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.tailwindcss.com https://unpkg.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;">
+    <title>WWW.CONSULTORIAMAIS.COM.BR</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #1e3a8a 0%, #0B1B44 100%);
+        }
+        .service-card {
+            transition: all 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #3b82f6;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover:after {
+            width: 100%;
+        }
+        /* Efeitos para mobile */
+        @media (hover: none) {
+            .btn-mobile:active {
+                transform: scale(0.95) !important;
+            }
+            .service-card:active {
+                transform: translateY(-2px) !important;
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
+            }
+            .nav-link:active {
+                color: #3b82f6 !important;
+            }
+            .nav-link:active:after {
+                width: 100% !important;
+            }
+        }
+        /* Melhorias gerais */
+        .btn-mobile {
+            transition: all 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* Navegação */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 20;
+        }
+        
+        .logo-container {
+            position: relative;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center logo-container">
+                        <img src="/img/logo menor.png" alt="LogoProcessos+" class="w-12 h-auto mr-10 z-10">
+                        <span class="text-xl font-bold">Processos+</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#inicio" class="nav-link btn-mobile text-gray-700 hover:text-blue-600 active:text-blue-700 px-3 py-2 text-sm font-medium">Início</a>
+                    <a href="#sobre" class="nav-link btn-mobile text-gray-700 hover:text-blue-600 active:text-blue-700 px-3 py-2 text-sm font-medium">Sobre</a>
+                    <a href="#servicos" class="nav-link btn-mobile text-gray-700 hover:text-blue-600 active:text-blue-700 px-3 py-2 text-sm font-medium">Serviços</a>
+                    <a href="#portfolio" class="nav-link btn-mobile text-gray-700 hover:text-blue-600 active:text-blue-700 px-3 py-2 text-sm font-medium">Projetos</a>
+                    <a href="#contato" class="nav-link btn-mobile text-gray-700 hover:text-blue-600 active:text-blue-700 px-3 py-2 text-sm font-medium">Contato</a>
+                    <a href="#contato" class="btn-mobile bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300">Fale Conosco</a>
+                    <a href="/Curriculo/Silmara Maria Machado do Prado - Processos+.pdf" download="Curriculo_Silmara_Machado" class="btn-mobile bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300">
+                        Baixar Currículo
+                    </a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="btn-mobile text-gray-500 hover:text-gray-900 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+    <div id="mobile-menu" class="md:hidden hidden bg-white pb-3 px-4 shadow-lg">
+    <a href="#inicio" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md text-base font-medium">Início</a>
+    <a href="#sobre" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md text-base font-medium">Sobre</a>
+    <a href="#servicos" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md text-base font-medium">Serviços</a>
+    <a href="#portfolio" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md text-base font-medium">Projetos</a>
+    <a href="#contato" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md text-base font-medium">Contato</a>
+    <!-- Adicione este botão -->
+    <a href="/Curriculo/Silmara Maria Machado do Prado - Processos+.pdf" download="Curriculo_Silmara_Machado" class="block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium text-center mt-2 transition duration-300">
+        Baixar Currículo
+    </a>
+</div>
+    </nav>
+    <!-- Hero Section -->
+    <section id="inicio" class="hero-gradient pt-24 pb-16 md:pt-32 md:pb-24 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="md:flex items-center justify-between">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">Transforme sua produção com consultoria estratégica em processos industriais</h1>
+                    <p class="text-xl text-blue-100 mb-8">Apoio técnico e estratégico presencial semanal para otimização de processos industriais</p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#contato" class="btn-mobile bg-white hover:bg-gray-100 active:bg-gray-200 text-blue-600 font-bold py-3 px-6 rounded-lg text-center transition duration-300 transform hover:scale-105 focus:scale-105 active:scale-95">
+                            Quero melhorar minha produção
+                        </a>
+                        <a href="https://wa.me/5541991638208?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20a%20consultoria" class="btn-mobile bg-green-500 hover:bg-green-600 active:bg-green-700 text-white font-bold py-3 px-6 rounded-lg text-center transition duration-300 transform hover:scale-105 focus:scale-105 active:scale-95">
+                            <i class="fab fa-whatsapp mr-2"></i> Fale direto no WhatsApp
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <lottie-player src="/img/Animation - 1747743080523.json" background="transparent" speed="1" style="width: 100%; max-width: 500px;" loop autoplay></lottie-player>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About Section -->
+    <section id="sobre" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">         
+            <section id="quem-sou" class="py-16 relative text-white">
+                <div class="absolute inset-0 bg-cover bg-center opacity-20" style="background-image: url('caminho-da-sua-logo.png');"></div>
+                <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl font-bold text-gray-900 mb-4">Quem Sou</h2>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Gestora Industrial com mais de 10 anos de experiência</h3>
+                        <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+                    </div>
+                </div>
+            </section>         
+            <div class="md:flex items-center">
+                <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center">
+                    <div class="relative">
+                        <img src="/img/Consultora-removebg-preview.png" alt="Consultora Industrial" class="rounded-lg shadow-xl w-70 h-70 object-cover">
+                        <div class="absolute -bottom-4 -right-4 bg-green-600 text-white p-4 rounded-lg shadow-lg">
+                            <p class="font-bold">Green Belt</p>
+                            <p class="text-xs">Lean Six Sigma</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-2/3 md:pl-12">
+                    <p class="text-gray-600 mb-6">Sou especialista em gestão de processos industriais e melhoria contínua, com mais de 10 anos de experiência no setor industrial e quase 5 anos em cargos de liderança, aliando visão técnica e estratégica para promover ganhos operacionais concretos.</p>
+                    <div class="bg-gray-50 p-6 rounded-lg border-l-4 border-blue-600 mb-6">
+                        <p class="italic text-gray-700">"Mais do que diagnóstico, entrego soluções aplicáveis para melhorar produtividade, reduzir perdas e aumentar a eficiência fabril."</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            <span>Visitas semanais presenciais</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            <span>Foco em resultados práticos</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            <span>Técnicas com resultados mensuráveis</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            <span>Acompanhamento contínuo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Services Section -->
+    <section id="servicos" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Nossos Serviços</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Soluções personalizadas para otimizar sua linha de produção e reduzir custos operacionais</p>
+                <div class="w-20 h-1 bg-blue-600 mx-auto mt-4"></div>
+            </div>          
+            <div class="grid md:grid-cols-2 gap-8 mb-16">
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                        <i class="fas fa-cogs text-blue-600 mr-3"></i> O que oferecemos
+                    </h3>
+                    <div class="space-y-6">
+                        <div class="service-card btn-mobile bg-white p-6 rounded-lg shadow-md transition duration-300 hover:transform hover:-translate-y-1 active:translate-y-0">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-search text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-2">Mapeamento detalhado dos processos</h4>
+                                    <p class="text-gray-600">Identificar e documentar todas as etapas do fluxo produtivo para detectar falhas e oportunidades.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-card btn-mobile bg-white p-6 rounded-lg shadow-md transition duration-300 hover:transform hover:-translate-y-1 active:translate-y-0">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-tasks text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-2">Priorização de melhorias e capacitação da equipe</h4>
+                                    <p class="text-gray-600">Selecionar ações críticas e treinar times para garantir implementação eficaz.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-card btn-mobile bg-white p-6 rounded-lg shadow-md transition duration-300 hover:transform hover:-translate-y-1 active:translate-y-0">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-chart-line text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-2">Otimização de setups, estoques e demandas</h4>
+                                    <p class="text-gray-600"> Reduzir tempos de preparação, equilibrar estoques e alinhar produção à demanda real.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-card btn-mobile bg-white p-6 rounded-lg shadow-md transition duration-300 hover:transform hover:-translate-y-1 active:translate-y-0">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-desktop text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-2">Acompanhamento via KPIs e ajustes contínuos</h4>
+                                    <p class="text-gray-600"> Monitorar métricas-chave e refiná-las para sustentar melhorias ao longo do tempo.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                        <i class="fas fa-calendar-check text-blue-600 mr-3"></i> Como funciona
+                    </h3>
+                    <div class="space-y-6">
+                        <div class="service-card btn-mobile bg-white p-6 rounded-lg shadow-md transition duration-300 hover:transform hover:-translate-y-1 active:translate-y-0">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-user-tie text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-2">Visita Semanal Presencial</h4>
+                                    <p class="text-gray-600">1 dia por semana dedicado à sua empresa para acompanhamento e implementação das melhorias.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-card btn-mobile bg-white p-6 rounded-lg shadow-md transition duration-300 hover:transform hover:-translate-y-1 active:translate-y-0">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-file-alt text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-2">Diagnóstico e alinhamento com gestores</h4>
+                                    <p class="text-gray-600">Levantamento detalhado dos processos, identificação de gargalos e definição de metas estratégicas. </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-card btn-mobile bg-white p-6 rounded-lg shadow-md transition duration-300 hover:transform hover:-translate-y-1 active:translate-y-0">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-users text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-2"> Implementação de melhorias e treinamentos </h4>
+                                    <p class="text-gray-600">Aplicação de soluções prioritárias com capacitação das equipes para garantir sustentabilidade das mudanças.</p>
+                                </div>  
+                            </div>
+                        </div>
+                        <div class="service-card btn-mobile bg-white p-6 rounded-lg shadow-md transition duration-300 hover:transform hover:-translate-y-1 active:translate-y-0">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-desktop text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg mb-2">Análise de indicadores e otimizações contínuas</h4>
+                                    <p class="text-gray-600">Monitoramento rigoroso de KPIs e ajustes progressivos para maximizar eficiência e resultados. </p>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-blue-600 rounded-lg p-8 text-white">
+                <div class="md:flex items-center">
+                    <div class="md:w-2/3 mb-6 md:mb-0">
+                        <h3 class="text-2xl font-bold mb-2">Pronto para transformar sua produção?</h3>
+                        <p class="text-blue-100">Agende uma visita sem compromisso para entender como podemos ajudar sua empresa a alcançar melhores resultados.</p>
+                    </div>
+                    <div class="md:w-1/3 flex justify-center md:justify-end">
+                        <a href="#contato" class="btn-mobile bg-white hover:bg-gray-100 active:bg-gray-200 text-blue-600 font-bold py-3 px-6 rounded-lg text-center transition duration-300 transform hover:scale-105 focus:scale-105 active:scale-95">
+                            Agendar Visita
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Projetos Realizados</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Casos de sucesso que demonstram nosso impacto na indústria, por questões de confidencialidade, os nomes das empresas foram omitidos. Os relatos são baseados em experiências reais vivenciadas em campo.</p>
+                <div class="w-20 h-1 bg-blue-600 mx-auto mt-4"></div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="portfolio-item bg-gray-50 rounded-lg overflow-hidden shadow-md relative">
+                    <img src="/img/metalurgica.png" alt="Projeto Empresa X" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Indústria de Embalagens Metálicas</h3>
+                        <div class="mb-4">
+                            <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full font-semibold">Setor Automotivo</span>
+                        </div>
+                        <p class="text-gray-600 mb-2"><span class="font-semibold">Atuação: </span> Consultora de Processos Industriais</p>
+                        <p class="text-gray-600 mb-2"><span class="font-semibold">Desafio: </span> Falta de integração entre áreas e baixa rastreabilidade dos pedidos.</p>
+                        <p class="text-gray-600"><span class="font-semibold">Solução: </span> Mapeamento do processo completo, cronograma interdepartamental, padronização da Lista B.O.M. e criação de ID único por produto.</p>
+                        <p class="text-gray-600 mb-2"><span class="font-semibold">Resultado: </span> Visibilidade total do fluxo produtivo e aprovação em auditoria internacional com nota máxima e nenhuma não conformidade.</p>
+                    </div>
+                </div>
+                <div class="portfolio-item bg-gray-50 rounded-lg overflow-hidden shadow-md relative">
+                    <img src="/img/injeção plastica.png" alt="Projeto Empresa Y" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Indústria de Injeção Plástica</h3>
+                        <div class="mb-4">
+                            <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full font-semibold">ISP</span>
+                        </div>
+                        <p class="text-gray-600 mb-2"><span class="font-semibold">Atuação:</span> Gestora Industrial</p>
+                        <p class="text-gray-600 mb-2"><span class="font-semibold">Desafio:</span> Processo produtivo sem estrutura sistêmica e ausência de dados confiáveis.</p>
+                        <p class="text-gray-600"><span class="font-semibold">Solução:</span> Implantação completa no ERP com mapeamento de B.O.M., insumos, tempos e custos reais por produto.</p>
+                        <p class="text-gray-600 mb-2"><span class="font-semibold">Resultado:</span> Inventário com perda de apenas R$ 24,00 em um estoque de R$ 500 mil, garantindo controle total e eficiência operacional.</p>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <!-- Contact Section -->
+    <section id="contato" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Entre em Contato</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Agende uma visita sem compromisso para entender como posso ajudar sua produção a evoluir.</p>
+                <div class="w-20 h-1 bg-blue-600 mx-auto mt-4"></div>
+            </div>
+            <div class="bg-white rounded-lg shadow-xl overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/2 bg-blue-600 text-white p-8 md:p-12">
+                        <h3 class="text-2xl font-bold mb-4">Informações de Contato</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-map-marker-alt mt-1 mr-4"></i>
+                                <div>
+                                    <h4 class="font-semibold">Atendimento Presencial</h4>
+                                    <p class="text-blue-100">Curitiba-PR</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-envelope mt-1 mr-4"></i>
+                                <div>
+                                    <h4 class="font-semibold">E-mail</h4>
+                                    <p class="text-blue-100">processosmais@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fab fa-whatsapp mt-1 mr-4"></i>
+                                <div>
+                                    <h4 class="font-semibold">WhatsApp</h4>
+                                    <a href="https://wa.me/4199163820820gostaria%20de%20saber%20mais%20sobre%20a%20consultoria" class="text-blue-100 hover:underline">(41) 99163-8208</a>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fab fa-linkedin mt-1 mr-4"></i>
+                                <div>
+                                    <h4 class="font-semibold">LinkedIn</h4>
+                                    <a href="http://linkedin.com/in/silmara-machado" class="text-blue-100 hover:underline">linkedin.com/in/silmara-machado</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-8">
+                            <h4 class="font-semibold mb-2">Horário de Atendimento</h4>
+                            <p class="text-blue-100">Segunda a Sexta: 8h às 18h</p>
+                        </div>  
+                    </div>
+                    <div class="md:w-1/2 p-8 md:p-12">
+    <form id="contactForm" action="https://formspree.io/f/mqaqvwwj" method="POST" class="space-y-6">
+        <!-- Campo Nome -->
+        <div>
+            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nome*</label>
+            <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition duration-300">
+        </div>
+        
+        <!-- Campo Empresa -->
+        <div>
+            <label for="company" class="block text-sm font-medium text-gray-700 mb-1">Empresa</label>
+            <input type="text" id="company" name="company" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition duration-300">
+        </div>
+        
+        <!-- Campo E-mail -->
+        <div>
+            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">E-mail*</label>
+            <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition duration-300">
+        </div>
+        
+        <!-- Campo Telefone -->
+        <div>
+            <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Telefone*</label>
+            <input type="tel" id="phone" name="phone" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition duration-300">
+        </div>
+        
+        <!-- Campo Mensagem -->
+        <div>
+            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Mensagem*</label>
+            <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition duration-300"></textarea>
+        </div>
+        
+        <!-- Configurações do Formspree (ocultas) -->
+        <input type="hidden" name="_next" value="https://processosmais.com.br/obrigado.html">
+        <input type="hidden" name="_subject" value="Novo contato do site - Formulário Landing Page">
+        <input type="text" name="_gotcha" style="display:none"> <!-- Campo anti-spam -->
+        
+        <!-- Botão de Envio (mantido exatamente como original) -->
+        <div>
+            <button type="submit" class="btn-mobile w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold py-3 px-6 rounded-lg transition duration-300 transform hover:scale-105 focus:scale-105 active:scale-95">
+                Enviar Mensagem
+            </button>
+        </div>
+    </form>
+</div>
+    
+</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="md:flex md:items-center md:justify-between">
+                <div class="flex justify-center md:justify-start mb-6 md:mb-0">
+                    <div class="flex items-center">
+                        <img src="/img/logo menor.png" alt="LogoProcessos+" class="w-10 h-auto mr-5">
+                        <span class="text-xl font-bold">Processos+</span>
+                    </div>
+                </div>
+                <div class="flex justify-center md:justify-end space-x-6">
+                    <a href="http://linkedin.com/in/silmara-machado" class="text-gray-400 hover:text-white">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://wa.me/5541991638208?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20a%20consultoria" class="text-gray-400 hover:text-white">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="mailto:processosmais@gmail.com" class="text-gray-400 hover:text-white">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-8 border-t border-gray-800 pt-8 md:flex md:items-center md:justify-between">
+                <div class="text-center md:text-left mb-4 md:mb-0">
+                    <p class="text-sm text-gray-400">&copy; 2025 Processos+. Todos os direitos reservados.</p>
+                </div>
+                <div class="text-center md:text-left mb-4 md:mb-0">
+                    <p class="text-sm text-gray-400">CNPJ: 59.402.150/0001-74</p>
+                </div>
+                <div class="flex justify-center md:justify-end space-x-6">
+                    <a href="#" class="text-sm text-gray-400 hover:text-white">Política de Privacidade</a>
+                    <a href="#" class="text-sm text-gray-400 hover:text-white">Termos de Serviço</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+        // Back to top button
+        const backToTopButton = document.getElementById('backToTop');       
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+        backToTopButton.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Here you would typically send the form data to your server
+            alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+            this.reset();
+        });
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+        // Melhoria para touch em mobile
+        document.querySelectorAll('.btn-mobile').forEach(btn => {
+            btn.addEventListener('touchstart', function() {
+                this.classList.add('active');
+            });
+            
+            btn.addEventListener('touchend', function() {
+                this.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>

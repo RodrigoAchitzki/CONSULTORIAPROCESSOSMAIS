@@ -1,0 +1,47 @@
+.form-message {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Melhora espaçamento em mobile */
+@media (max-width: 767px) {
+  section {
+    padding: 2rem 1rem;
+  }
+  
+  .portfolio-item, .service-card {
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  #mobile-menu {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    background: white;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  
+  nav {
+    padding: 0 15px;
+  }
+}
